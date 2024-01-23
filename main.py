@@ -24,8 +24,6 @@ import re
 from collections import OrderedDict
 from multiprocessing import Value, Process, Queue
 
-from pyanime4k import ac
-
 from tha2.mocap.ifacialmocap_constants import *
 
 from args import args
@@ -588,8 +586,6 @@ def main():
     if args.output_webcam:
         cam_scale = 1
         cam_width_scale = 1
-        if args.anime4k:
-            cam_scale = 2
         if args.alpha_split:
             cam_width_scale = 2
         cam = pyvirtualcam.Camera(width=args.output_w * cam_scale * cam_width_scale, height=args.output_h * cam_scale,
@@ -601,23 +597,6 @@ def main():
         print(f'Using virtual camera: {cam.device}')
 
     a = None
-
-    if args.anime4k:
-        parameters = ac.Parameters()
-        # enable HDN for ACNet
-        parameters.HDN = True
-
-        # a = ac.AC(
-        #     managerList=ac.ManagerList([ac.CUDAManager(dID=0)]),
-        #     type=ac.ProcessorType.Cuda_ACNet,
-        # )
-
-        a = ac.AC(
-            managerList=ac.ManagerList([ac.OpenCLACNetManager(pID=0, dID=0)]),
-            type=ac.ProcessorType.OpenCL_ACNet,
-        )
-        a.set_arguments(parameters)
-        print("Anime4K Loaded")
 
     position_vector = [0, 0, 0, 1]
     position_vector_0 = None
@@ -909,23 +888,6 @@ def main():
             tic = time.perf_counter()
 
         output_fps_number = output_fps()
-
-        if args.anime4k:
-            alpha_channel = postprocessed_image[:, :, 3]
-            alpha_channel = cv2.resize(alpha_channel, None, fx=2, fy=2)
-
-            # a.load_image_from_numpy(cv2.cvtColor(postprocessed_image, cv2.COLOR_RGBA2RGB), input_type=ac.AC_INPUT_RGB)
-            # img = cv2.imread("character/test41.png")
-            img1 = cv2.cvtColor(postprocessed_image, cv2.COLOR_RGBA2BGR)
-            # a.load_image_from_numpy(img, input_type=ac.AC_INPUT_BGR)
-            a.load_image_from_numpy(img1, input_type=ac.AC_INPUT_BGR)
-            a.process()
-            postprocessed_image = a.save_image_to_numpy()
-            postprocessed_image = cv2.merge((postprocessed_image, alpha_channel))
-            postprocessed_image = cv2.cvtColor(postprocessed_image, cv2.COLOR_BGRA2RGBA)
-            if args.perf == 'main':
-                print("anime4k", (time.perf_counter() - tic) * 1000)
-                tic = time.perf_counter()
         if args.alpha_split:
             alpha_image = cv2.merge(
                 [postprocessed_image[:, :, 3], postprocessed_image[:, :, 3], postprocessed_image[:, :, 3]])

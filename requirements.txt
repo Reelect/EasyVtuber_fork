@@ -8,5 +8,4 @@ opencv_python==4.5.5.64
 opencv-contrib-python
 opencv-contrib-python-headless
 Pillow==9.1.0
-pyanime4k
 pyvirtualcam==0.9.1
