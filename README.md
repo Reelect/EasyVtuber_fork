@@ -1,44 +1,41 @@
-# EasyVtuber  
+# EasyVtuber
 
-> 用买皮的钱，再买一张3080吧！
+이 포크는 원본 포크의 readme를 기계번역한 내용입니다.
 
-![OBS Record With Transparent Virtural Cam Input](assets/new_sample.gif)
+> 스킨을 사는 데 사용한 돈으로 3080 그래픽 카드 하나 더 사세요!
 
-Fork自 https://github.com/GunwooHan/EasyVtuber  
-为解决面捕质量问题，又反向port了原版demo https://github.com/pkhungurn/talking-head-anime-2-demo 中关于ifacialmocap的ios面捕逻辑  
-并且省略了ifacialmocap pc端，通过UDP直连的方式使ios面捕刷新率达到最高60fps，解决了面捕刷新率的瓶颈  
-最后，给EasyVtuber中使用的OBS虚拟摄像头方案增加配套的Shader支持，解锁RGBA输出能力，无需绿背即可直接使用
+![투명 가상 카메라 입력을 사용한 OBS 녹화](assets/new_sample.gif)
 
-[视频介绍和安装说明](https://www.bilibili.com/video/BV1uu411r7DR)  
+https://github.com/GunwooHan/EasyVtuber에서 포크되었습니다.
+얼굴 캡처 품질 문제를 해결하기 위해 https://github.com/pkhungurn/talking-head-anime-2-demo에서 가져온 원본 데모의 iOS 얼굴 캡처 로직을 역공학하고 포팅했습니다. 이것은 PC 측 ifacialmocap을 생략하고 iOS 얼굴 캡처에 직접 UDP로 연결하여 최대 새로 고침률을 60fps까지 지원하고 얼굴 캡처 새로 고침률 병목 현상을 극복하는 데 성공했습니다. 마지막으로 EasyVtuber에서 사용되는 OBS 가상 카메라 솔루션에 셰이더 지원을 추가하여 그린 스크린 없이도 RGBA 출력 기능을 잠금 해제했습니다.
 
-## Requirements  
+[비디오 소개 및 설치 지침 (중국어)](https://www.bilibili.com/video/BV1uu411r7DR)
 
-### 硬件  
+## 요구 사항
 
-- 支持FaceID的iPhone（使用ifacialmocap软件，需购买，需要稳定的WIFI连接）或网络摄像头（使用OpenCV）  
-- 支持PyTorch CUDA的NVIDIA显卡（参考：TUF RTX3080 默频 40FPS 80%占用）
-### 软件
+### 하드웨어
 
-- 本方案在Windows 10上测试可用
-- Python>=3.8
-- OBS或Unity Capture（虚拟摄像头方案）
-- Photoshop或其他图片处理软件
-- 科学上网方案，看懂英文网站和报错的能力
+- Face ID를 지원하는 iPhone (구매 및 안정적인 Wi-Fi 연결이 필요한 ifacialmocap 소프트웨어 사용) 또는 네트워크 카메라 (OpenCV 사용)
+- PyTorch CUDA를 지원하는 NVIDIA 그래픽 카드 (예: 기본 설정에서 40FPS 및 80% 사용률로 TUF RTX3080)
 
-## Installation(嵌入式Python version)  
-在bin文件夹内是一个基于Python3.10.5的Win64嵌入式版构建的轻量化运行环境  
-对于只是需要体验这个库的用户，推荐使用这个方式安装。  
+### 소프트웨어
 
-### 下载ZIP并解压或者克隆本Repo  
-点击[`Download ZIP`](../../archive/master.zip) 下载并解压，或者使用git克隆该仓库到你找得到的地方。  
-完整展开venv需要大约5.5G的硬盘空间。  
+- Windows 10에서 테스트됨
+- Python >= 3.8
+- OBS 또는 Unity Capture (가상 카메라 솔루션용)
+- Photoshop 또는 다른 이미지 처리 소프트웨어
+- 차단된 웹 사이트에 액세스하는 솔루션 및 영어 웹 사이트 및 오류 메시지를 이해할 수 있는 능력
 
-### 下载预训练模型  
-使用00B快捷方式或者以下链接下载模型文件  
-https://github.com/pkhungurn/talking-head-anime-3-demo#download-the-models  
-从原repo中下载（this Dropbox link）的压缩文件  
-解压到`data/models`文件夹中，与`placeholder.txt`同级  
-正确的目录层级为  
+## 설치 (내장 Python 버전)
+"bin" 폴더에는 Python 3.10.5를 기반으로 한 Win64용 경량 실행 환경이 포함되어 있습니다. 이 라이브러리를 체험하려는 사용자들에게는 이 설치 방법을 권장합니다.
+
+### ZIP 다운로드 및 압축 해제 또는 이 저장소 복제
+[`Download ZIP`](../../archive/master.zip)을 클릭하여 다운로드하고 압축 해제하거나 Git을 사용하여 이 저장소를 찾기 쉬운 위치에 복제합니다. venv 폴더를 확장하려면 약 5.5GB의 하드 디스크 공간이 필요합니다.
+
+### 사전 훈련된 모델 다운로드
+00B 바로 가기 또는 다음 링크를 사용하여 모델 파일을 다운로드합니다:
+https://github.com/pkhungurn/talking-head-anime-3-demo#download-the-models
+원본 리포지토리에서 압축 파일을 다운로드하고 "data/models" 폴더에 "placeholder.txt"와 동일한 수준에 푼 다음 압축을 해제합니다. 올바른 디렉토리 구조는 다음과 같아야 합니다:
 ```
 + models
   - separable_float
@@ -47,76 +44,72 @@ https://github.com/pkhungurn/talking-head-anime-3-demo#download-the-models
   - standard_half
   - placeholder.txt
 ```
-如果不确定自己有没有解压到正确位置，可以使用`00.检查并补齐必需文件.bat`  
+올바른 위치에 압축을 푼지 확실하지 않은 경우 "00. 필수 파일 확인 및 완료.bat" 스크립트를 사용할 수 있습니다.
 
-### 构建运行环境
-运行适合你的地域的`01A.构建运行环境（默认源）.bat`或者`01B.构建运行环境（国内源）.bat`  
-这个脚本会使用pip在bin目录下安装所有需要的依赖  
-两个脚本可以互相替代，并且支持从中断的位置继续  
-如果出现网络相关报错，直接关掉控制台，调整网络，重新运行即可  
-![step01success](assets/01Success.png)  
-完全安装完成后再次运行脚本的输出如图所示。一般来说安装全程没有红字就是成功结束。  
+### 실행 환경 빌드
+설치를 위해 지역에 따라 "01A. 실행 환경 빌드 (기본 소스)" 또는 "01B. 실행 환경 빌드 (국내 소스)" 중 하나를 실행합니다. 이러한 스크립트는 "bin" 디렉토리에 모든 필요한 종속성을 pip를 사용하여 설치합니다. 이러한 스크립트는 상호 대체 가능하며 중단된 설치에서 다시 시작할 수 있습니다. 네트워크 관련 오류가 발생하면 콘솔을 닫고 네트워크를 조정한 후 스크립트를 다시 실행하면 됩니다. 설치 중에 어떠한 빨간 글도 표시되지 않아야 합니다.
 
-### 使用启动器测试结果
-运行`02B启动器（调试输出）.bat`  
-直接点击界面底部的`Save & Launch`
-如果看到了弹出的opencv输出窗体，则安装成功完成
-![img.png](assets/02success.png)
+### 런처를 사용하여 결과 테스트
+"02B. 런처 (디버그 출력) 실행.bat"을 실행합니다. 인터페이스에서 "Save & Launch"를 클릭하면 됩니다. 팝업되는 OpenCV 출력 창을 볼 수 있다면 설치가 성공한 것입니다.
 
-### 配置输入输出设备
-在成功进行Debug输出之后，请移步之后的输入输出设备一节进行进一步配置以输出到OBS。
+### 입력 및 출력 장치 구성
+디버그 출력을 성공적으로 생성한 후 입력 및 출력 장치 섹션으로 이동하여 OBS로 출력하도록 추가 구성합니다.
 
-## Installation(Venv version)  
-如果你还需要使用之前的Venv方案，请参考以下步骤  
+## 설치 (Venv 버전)
+이전 Venv 솔루션을 계속 사용해야 하는 경우 다음 단계를 따릅니다.
 
-### 下载ZIP并解压或者克隆本Repo  
-点击[`Download ZIP`](../../archive/master.zip) 下载并解压，或者使用git克隆该仓库到你找得到的地方。  
-完整展开venv需要大约5.5G的硬盘空间。  
+### ZIP 다운로드 및 압축 해제 또는 이 저장소 복제
+[`Download ZIP`](../../archive/master.zip)을 클릭하여 다운로드하고 압축 해제하거나 Git을 사용하여 이 저장소를 찾기 쉬운 위치에 복제합니다. venv 폴더를
 
-### 创建虚拟环境
-此处默认你有一个正确的Python安装，不会装的话请使用前文的嵌入式方案  
-在项目目录下运行`python -m venv venv`创建虚拟环境
+ 확장하려면 약 5.5GB의 하드 디스크 공간이 필요합니다.
 
-### 切换到虚拟环境
-之后的操作都需要切换到虚拟环境中进行，分辨方式为命令行前会有`(venv)`标识  
-在控制台运行`venv\Scripts\activate.bat`切换到刚才创建的虚拟环境  
-之后你的python pip等操作都会在虚拟环境中执行  
+### 가상 환경 생성
+가상 환경을 생성하려면 프로젝트 디렉토리에서 다음 명령을 실행합니다:
+```
+python -m venv venv
+```
 
-### 安装依赖  
-在虚拟环境中执行以下命令  
-`pip install -r .\requirements.txt`  
-`pip install torch --extra-index-url https://download.pytorch.org/whl/cu113`  
+### 가상 환경 활성화
+이후의 모든 작업은 가상 환경 내에서 수행되어야 하며 명령 프롬프트에 "(venv)"로 표시됩니다. 가상 환경을 활성화하려면 다음 명령을 콘솔에서 실행합니다:
+```
+venv\Scripts\activate.bat
+```
+이후 Python 및 pip 작업은 가상 환경 내에서 진행됩니다.
 
-### 运行启动器  
-在虚拟环境中执行以下命令  
-`python launcher.py`  
+### 종속성 설치
+가상 환경 내에서 다음 명령을 실행합니다:
+```
+pip install -r .\requirements.txt
+pip install torch --extra-index-url https://download.pytorch.org/whl/cu113
+```
 
+### 런처 실행
+가상 환경 내에서 다음 명령을 실행합니다:
+```
+python launcher.py
+```
 
-## Installation(Conda version)  
+## 설치 (Conda 버전)
 
-### 克隆本Repo  
+### 이 저장소 복제
+이 저장소를 복제한 후 PyCharm에서 열었다면 즉시 Python 인터프리터를 구성하지 마십시오.
 
-克隆完以后如果直接用Pycharm打开了，先不要进行Python解释器配置。
+### Python 및 Anaconda 환경
+이 프로젝트는 패키지 관리를 위해 Anaconda를 사용합니다. 다음 단계를 따릅니다:
 
-### Python和Anaconda环境  
+1. https://www.anaconda.com/를 방문하여 Anaconda를 설치합니다.
+2. Anaconda Prompt 콘솔을 실행합니다.
+3. 중국 사용자의 경우 Tsinghua 소스로 전환하는 것이 좋습니다 (pip 및 conda 소스를 모두 교체하며 특히 PyTorch 채널의 conda를 교체해야 합니다. PyTorch 자체가 상당히 크기 때문입니다).
+4. 다음 명령을 실행하여 환경을 생성하고 모든 종속성을 설치합니다:
+   ```
+   conda env create -f env_conda.yaml
+   ```
+   오류가 발생하면 (일반적으로 네트워크 문제로 인한 것임) 부분적으로 생성된 환경을 삭제하고 `conda clean --all`을 사용하여 다운로드 캐시를 지우고 구성을 조정한 후 다시 시도하십시오.
 
-这个项目使用Anaconda进行包管理  
-首先前往https://www.anaconda.com/ 安装Anaconda  
-启动Anaconda Prompt控制台  
-国内用户建议此时切换到清华源（pip和conda都要换掉，尤其是conda的Pytorch Channel，pytorch本体太大了）  
-然后运行 `conda env create -f env_conda.yaml` 一键安装所有依赖  
-如果有报错（一般是网络问题），删掉配了一半的环境，`conda clean --all`清掉下载缓存，调整配置后再试
+설치가 완료되면 PyCharm에서 이 프로젝트를 엽니다. 오른쪽 하단의 인터프리터 메뉴를 클릭한 다음 "Add Interpreter..." -> "Conda Environment" -> "Existing environment"을 선택합니다. 컴퓨터의 `conda.exe` 및 이전에 만든 `talking-head-anime-2-demo` 환경의 `python.exe`를 선택합니다. 모두 선택되고 종속성이 나열되면 OK를 클릭합니다.
 
-安装完成后，在Pycharm内打开本项目，右下角解释器菜单点开，`Add Interpreter...`->`Conda Environment`->`Existing environment`  
-选好自己电脑上的`conda.exe`和刚才创建好的`talking-head-anime-2-demo`环境内的`python.exe`    
-点击OK，依赖全亮即可  
-
-### 下载预训练模型  
-
-https://github.com/pkhungurn/talking-head-anime-3-demo#download-the-models  
-从原repo中下载（this Dropbox link）的压缩文件  
-解压到`data/models`文件夹中，与`placeholder.txt`同级  
-正确的目录层级为  
+### 사전 훈련된 모델 다운로드
+https://github.com/pkhungurn/talking-head-anime-3-demo#download-the-models에서 압축 파일을 다운로드하고 "data/models" 폴더에 "placeholder.txt"와 동일한 수준에 푼 다음 압축을 해제합니다. 올바른 디렉토리 구조는 다음과 같아야 합니다:
 ```
 + models
   - separable_float
@@ -124,63 +117,16 @@ https://github.com/pkhungurn/talking-head-anime-3-demo#download-the-models
   - standard_float
   - standard_half
   - placeholder.txt
-```  
+```
 
-### 运行启动器  
-在Conda环境中执行以下命令  
-`python launcher.py`  
+### 런처 실행
+Conda 환경에서 다음 명령을 실행합니다:
+```
+python launcher.py
+```
 
-## 输入输出设备  
+## 입력 및 출력 장치
 
-#### OBS Virtual Camera
+#### OBS 가상 카메라
 
-目前更推荐这个方案，UnityCapture存在未查明的性能瓶颈  
-如果你选择自己进行抠像你可以直接输出到obs，如果你需要RGBA支持则需要额外使用一个Shader  
-下载并安装StreamFX https://github.com/Xaymar/obs-StreamFX  
-下载Shader（感谢树根的协助） https://github.com/shugen002/shader/blob/master/merge%20alpha2.hlsl  
-之后，使用`--alpha_split`参数运行
-![alpha split](assets/alphasplit.png)  
-你会看到这样的输出画面，透明通道单独使用灰度方式发送了  
-之后对OBS中的视频采集设备添加滤镜-着色器-选择你下载的`merge alpha2.hlsl`-关闭   
-这样透明通道就应用回左边的图像了  
-你可能需要手动调整一下裁剪把右侧的无用画面切掉  
-(看不到着色器滤镜的话就是StreamFX没装好或者OBS不是最新版)
-
-#### UnityCapture  
-
-如果需要使用透明通道输出，参考 https://github.com/schellingb/UnityCapture#installation 安装好UnityCapture  
-只需要正常走完Install.bat，在OBS里能看到对应的设备（Unity Video Capture）就行  
-
-在OBS添加完摄像头以后，还需要手动配置一次摄像头属性才能支持ARGB    
-右键属性-取消激活-分辨率类型自定义-分辨率512x512(与`--output_size`参数一致)-视频格式ARGB-激活
-
-#### iFacialMocap  
-
-https://www.ifacialmocap.com/download/  
-你大概率需要购买正式版（非广告，只是试用版不太够时长）  
-购买之前确认好自己的设备支持  
-**不需要下载PC软件**，装好iOS端的软件即可，连接信息通过参数传入Python  
-
-#### OpenSeeFace  
-
-https://github.com/emilianavt/OpenSeeFace/releases  
-直接下载最新版本的Release包并解压  
-之后进入解压目录的Binary文件夹  
-右键编辑`run.bat`，在倒数第二行运行facetracker的命令后加上`--model 4`，切换到模型4可以wink  
-`facetracker -c %cameraNum% -F %fps% -D %dcaps% -v 3 -P 1 --discard-after 0 --scan-every 0 --no-3d-adapt 1 --max-feature-updates 900 --model 4`（仅供参考）  
-之后保存并双击`run.bat`运行，按照提示选择摄像头、分辨率、帧率，捕获正常的话可以看到输出画面  
-最后在启动器中选择OpenSeeFace输入，或添加启动参数`--osf 127.0.0.1:11573`即可接入OpenSeeFace
-
-## Run
-
-完全体运行命令`python main.py --output_webcam unitycapture --ifm 192.168.31.182:49983 --character test1L2 --extend_movement 1 --output_size 512x512`
-
-参数名 | 值类型 | 说明
-:---: | :---: | :---:
---character|字符串|`character`目录下的输入图像文件名，不需要带扩展名
---debug|无|打开OpenCV预览窗口输出渲染结果，如果没有任何输出配置，该参数默认生效
---input|字符串|不使用iOS面捕时，传入要使用的摄像头设备名称，默认为设备0，有ifm参数时无效
---ifm|字符串|使用iOS面捕时，传入设备的`IP:端口号`，如`192.168.31.182:49983`
---output_webcam|字符串|可用值为`obs` `unitycapture`，选择对应的输出种类，不传不输出到摄像头
---extend_movement|浮点数|使用iOS面捕返回的头部位置，对模型输出图像进一步进行移动和旋转使得上半身可动<br>传入的数值表示移动倍率（建议值为1）
---output_size|字符串|格式为`256x256`，必须是4的倍数。<br>增大它并不会让图像更清晰，但配合extend_movement会增大可动范围
+현재 이 솔루션을 권장하며 UnityCapture에 알려지지 않은 성능 병목 현상이 있을 수 있습니다. 크로마 키를 직접 수행하려는 경우 OBS로 직접 출력할 수 있습니다. RGBA 지원이 필요한 경우 추가 셰이더를 사용해야 합니다.
