@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+  vtuber:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ezvtuber
+    volumes:
+      - ./data:/usr/src/app/data
+      - /tmp/.X11-unix:/tmp/.X11-unix
+    ports:
+      - "8001:8001"
+    environment:
+      - img_name=real
+      - DISPLAY=unix$DISPLAY
+
